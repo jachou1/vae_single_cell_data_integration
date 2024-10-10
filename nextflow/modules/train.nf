@@ -35,9 +35,9 @@ process TRAIN {
 
     mkdir "${prefix}/recon_param_${recon_param}_contrastive_param_${contrastive_param}_kl_param_${kl_param}_classifier_param_${classifier_param}"
     train \
-        --cells-file concat_sc_xenium_input.npy \
-        --labels-file scrna_labels_subset_xenium_labels_celltype.npy \
-        --modality-file concat_sc_xenium_data_modality.npy \
+        --cells-file smaller_fidelitous_input.npy \
+        --labels-file smaller_fidelitous_labels.npy \
+        --modality-file smaller_fidelitous_modalities.npy \
         --n-epochs 300 \
         --input-dir "$input_dir" \
         --learning-rate 0.001 \
