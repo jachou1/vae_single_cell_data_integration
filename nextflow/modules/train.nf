@@ -3,8 +3,8 @@ process TRAIN {
     label "${ params.device == 'cuda' ? 'gpu' : 'cpu' }"
     label 'process_high'
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        ('docker://jeffquinnmsk/bayestme:' + params.bayestme_version) :
-        ('docker.io/jeffquinnmsk/bayestme:' + params.bayestme_version) }"
+        ('docker://jeffquinnmsk/vae_single_cell_integration:' + params.bayestme_version) :
+        ('docker.io/jeffquinnmsk/vae_single_cell_integration:' + params.bayestme_version) }"
 
     input:
     tuple val(meta), path(input_dir), val(recon_param), val(contrastive_param), val(kl_param), val(classifier_param)
@@ -44,9 +44,10 @@ process TRAIN {
         --batch-size 200 \
         --label-pct 0.1 \
         --output_dir "${prefix}/recon_param_${recon_param}_contrastive_param_${contrastive_param}_kl_param_${kl_param}_classifier_param_${classifier_param}" \
-        --reconstruction_penalty $recon_param \
-        --contrastive_penalty $contrastive_param \
-        --classification_penalty $classifier_param \
-        --kl_penalty $kl_param
+        --reconstruction_penalty ${recon_param} \
+        --contrastive_penalty ${contrastive_param} \
+        --classification_penalty ${classifier_param} \
+        --kl_penalty ${kl_param} \
+        --device ${params.device} \
     """
 }

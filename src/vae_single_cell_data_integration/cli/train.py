@@ -58,6 +58,12 @@ def get_parser():
     parser.add_argument(
         "--kl-penalty", type=float, help="KL Loss weight"
     )  # Need a value, since it was hard-coded as 1
+    parser.add_argument(
+        "--device", type=str,
+        help="Device to run the model on",
+        default="cpu",
+        choices=["cpu", "cuda"]
+    )
 
     # Parse the command-line arguments
     return parser
@@ -189,6 +195,7 @@ def main():
         batch_size=args.batch_size,
         patience=10,
         xenium_classifier_weight=args.xenium_classifier_weight,
+        device=args.device
     )
 
     # Save the train_data and train_modality_labels

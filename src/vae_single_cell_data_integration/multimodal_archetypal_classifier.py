@@ -372,6 +372,7 @@ def fit_vae(
     con_temp=1,
     model_filename="test",
     patience=5,
+        device="cpu"
 ):
     # Hide the labels for lots of cells
     masked_cell_type_labels = np.copy(cell_type_labels)
@@ -486,7 +487,6 @@ def fit_vae(
     model = JointVAEwithClassification(
         train_cells_dropped_nans.shape[1], cell_type_labels.max() + 1
     )
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
     contraster = build_contrastive_sampler(t_train_cell_types, batch_size)
