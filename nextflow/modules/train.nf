@@ -3,8 +3,8 @@ process TRAIN {
     label "${ params.device == 'cuda' ? 'gpu' : 'cpu' }"
     label 'process_high'
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        ('docker://jeffquinnmsk/vae_single_cell_integration:' + params.bayestme_version) :
-        ('docker.io/jeffquinnmsk/vae_single_cell_integration:' + params.bayestme_version) }"
+        ('docker://jeffquinnmsk/vae_single_cell_integration:' + params.software_version) :
+        ('docker.io/jeffquinnmsk/vae_single_cell_integration:' + params.software_version) }"
 
     input:
     tuple val(meta), path(input_dir), val(recon_param), val(contrastive_param), val(kl_param), val(classifier_param)
