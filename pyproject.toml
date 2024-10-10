@@ -1,0 +1,52 @@
+[project]
+name = "vae_single_cell_integration"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE.txt"}
+keywords = ["spatial", "expression", "rna"]
+authors = [
+    {name = "Jeff Quinn", email = "quinnj2@mskcc.org" }
+]
+
+maintainers = [
+    {name = "Jeff Quinn", email = "quinnj2@mskcc.org" },
+]
+
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+    "matplotlib",
+    "torch",
+    "numpy",
+    "scikit-learn",
+    "wandb",
+    "matplotlib",
+    "seaborn",
+    "umap-learn",
+    "pandas"
+]
+
+[project.optional-dependencies]
+dev = ["check-manifest"]
+test = ["pytest", "pytest-mock", "tox", "coverage"]
+
+[project.urls]
+"Homepage" = "https://github.com/jachou1/vae_single_cell_data_integration"
+"Documentation" = "https://github.com/jachou1/vae_single_cell_data_integration"
+"Source" = "https://github.com/jachou1/vae_single_cell_data_integration"
+
+[project.scripts]
+"traine" = "vae_single_cell_data_integration.cli.train:train"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
